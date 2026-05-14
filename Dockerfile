@@ -1,23 +1,17 @@
-# Use official PHP with Apache
-FROM php:8.2-apache
+# Use PHP CLI image — avoids all Apache MPM conflicts
+FROM php:8.2-cli
 
-# Fix: "More than one MPM loaded" — disable conflicting modules,
-# then enable only mpm_prefork (required for mod_php)
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
-    && a2enmod mpm_prefork
-
-# Install PHP extensions needed for MySQL
+# Install MySQL extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Enable Apache mod_rewrite (for clean URLs if needed)
-RUN a2enmod rewrite
+# Set working directory
+WORKDIR /var/www/html
 
-# Copy project files into Apache web root
-COPY . /var/www/html/
-
-# Set correct permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Copy project files
+COPY . .
 
 # Expose port 80
 EXPOSE 80
+
+# Start PHP's built-in web server
+CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html"]
