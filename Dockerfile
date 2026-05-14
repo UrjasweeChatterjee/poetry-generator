@@ -1,6 +1,11 @@
 # Use official PHP with Apache
 FROM php:8.2-apache
 
+# Fix: "More than one MPM loaded" — disable conflicting modules,
+# then enable only mpm_prefork (required for mod_php)
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork
+
 # Install PHP extensions needed for MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
