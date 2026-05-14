@@ -1,0 +1,5 @@
+# Git: ignore sensitive files and local artifacts
+.env
+.DS_Store
+vendor/
+*.log
