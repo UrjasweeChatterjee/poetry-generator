@@ -28,10 +28,10 @@ elseif (isset($_GET['login_error'])) $toast = 'login_error_' . preg_replace('/[^
     </div>
 
     <h1 class="display-title">
-        Create Beautiful<br>
-        <span>Poetry with AI</span>
+        Whispers of the Cosmos,<br>
+        <span>Inked by AI</span>
     </h1>
-    <p class="lead">Transform your thoughts, feelings, and ideas into stunning poems — powered by Artificial Intelligence.</p>
+    <p class="lead">Step into a realm where artificial intelligence breathes life into your deepest thoughts, weaving them into breathtaking verses of poetry.</p>
 
     <div class="hero-actions">
         <?php if (!isset($_SESSION['user_id'])): ?>
@@ -42,7 +42,7 @@ elseif (isset($_GET['login_error'])) $toast = 'login_error_' . preg_replace('/[^
         <?php endif; ?>
     </div>
 
-    <img src="assets/images/hero.jpg" class="hero-img" alt="Poetry Hero" onerror="this.style.display='none'">
+    <img src="assets/images/hero.png" class="hero-img" alt="Premium Poetry Hero" onerror="this.style.display='none'">
 </div>
 
 
